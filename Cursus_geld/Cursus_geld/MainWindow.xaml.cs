@@ -25,14 +25,19 @@ namespace Cursus_geld
 
         private void calculateButton_Click(object sender, RoutedEventArgs e)
         {
+            string jear = jearTextBox.Text;
             int hours = int.Parse(hoursTextBox.Text);
             double amount = hours * 1.5;
-            int decenia = (jaartal % 400);
-            int century = (jaartal - (jaartal % 400));
-            if(decenia % 4 == 0 && century % 400 == 0)
+            string decentia = jear.Substring(2, 2);
+            int century = (jaartal - int.Parse(decentia));
+            if(int.Parse(decentia) % 4 == 0 && century % 400 == 0)
             {
                 amount += 1.5;
                 leapjearLabel.Content = "Is schrikkeljaar";
+            }
+            else
+            {
+                leapjearLabel.Content = "Is geen schrikkeljaar";
             }
 
             amountToPayTextBox.Text = amount.ToString();
